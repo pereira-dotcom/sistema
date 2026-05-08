@@ -37,6 +37,7 @@ function datos(){
         {
             idproveedor: 1,
             ruc: "1234567-0",
+            nombre:"Angel Escalante",
             razonsocial: "DISTRI NORTE S.R.L.",
             direccion: "AV. SIN NOMBRE C/PUNTAS DEL NORTE",
             telefono: "0331-123456",
@@ -45,6 +46,7 @@ function datos(){
         {
             idproveedor: 2,
             ruc: "5400300-1",
+            nombre:"Luz Sanchez",
             razonsocial: "COMERCIAL LUZ S.A.",
             direccion: "ALEJO GARCÍA Y EUSEBIO AYALA",
             telefono: "0971-102030",
@@ -53,6 +55,7 @@ function datos(){
         {
             idproveedor: 3,
             ruc: "801234567-1",
+            nombre:"Ignacio González",
             razonsocial: "INFORMÁTICA VIP",
             direccion: "AV. RODRIGUEZ DE FRANCIA 1050",
             telefono: "0981-302010",

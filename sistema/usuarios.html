@@ -55,7 +55,7 @@
                                                   <th>Nombre</th>
                                                   <th>Celular</th>
                                                   <th>Usuario</th>
-                                                  <th>Contraseña</th>
+                                                  <th >Contraseña</th>
                                                   <th>Rol</th>
                                                   <th>Acciones</th>
                                              </tr>
@@ -395,6 +395,7 @@
                                    `;
                                    }
                               }
+                              
                          ],
                          dom: 'Bfrtip',
                          buttons: [
@@ -410,7 +411,7 @@
                                    extend: 'pdfHtml5',
                                    text: '<i class="bi bi-filetype-pdf"></i> Exportar a PDF',
                                    exportOptions: {
-                                        columns: [0, 1, 2, 3, 4, 5, 6] // Excluye columna de acciones (índice 6)
+                                        columns: [0, 1, 2, 3, 4, 5, 6] // Excluye columna de acciones (índice 7)
                                    },
                                    customize: function (doc) {
                                         // 1. Obtener fecha y hora en formato dd/MM/aaaa HH:mm:ss
@@ -448,7 +449,7 @@
                                                   if (tableNode.table.body && tableNode.table.body.length > 0) {
                                                        // 'auto' se ajusta al tamaño del contenido (como la cabecera)
                                                        // '*' toma todo el espacio sobrante (ideal para el Nombre)
-                                                       tableNode.table.widths = ['auto', 'auto', '*', 'auto', 'auto', 'auto'];
+                                                       tableNode.table.widths = ['auto', 'auto', '*', 'auto', 'auto', 'auto','auto'];
                                                   }
 
                                                   break; // salimos del loop luego de encontrar la tabla
@@ -484,9 +485,12 @@
                                         btn.classList.add('btn', 'btn-sm', 'btn-danger');
                                    }
                               });
+                              tabla.column(4).visible(false); //Ocultar la columna de Usuario
+                              tabla.column(5).visible(false); //Ocultar la columna contraseña
+                             // tabla.column(7).orderable(false); //Deshabilitar ordenamiento en la columna de acciones
                          }
                     });
-                    //tabla.column(5).visible(false); //Ocultar la columna contraseña
+                    
                }
                //------------------------------------------------------------------------------
                function guardarUsuarios(data) {
