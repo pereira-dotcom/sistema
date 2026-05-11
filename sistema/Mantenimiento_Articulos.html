@@ -1,523 +1,411 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Punto Elegancia - Artículos</title>
+    <script src="js/seguridad.js"></script>
+    <link rel="icon" type="image/png" href="img/ajustes.png">
+    <link href="menu/styles.css" rel="stylesheet" />
+    <!-- BOOTSTRAP ICONS -->
+          <link rel="stylesheet" href="bt-icons/bootstrap-icons.min.css">
 
-        <title>Nombre del Sistema</title>
-        <link rel="icon" type="image/png" href="img/working.png">
-        
-        <!-- ESTILOS DEL MENU -->
-        <link href="menu/styles.css" rel="stylesheet" />
+          <!-- DATATABLES -->
+          <link rel="stylesheet" href="dt/datatables.min.css">
+          <link rel="stylesheet" href="dt/jquery.dataTables.min.css">
+          <link rel="stylesheet" href="dt/buttons.dataTables.min.css">
+
+          <!-- ALERTIFYJS -->
+          <link rel="stylesheet" href="alert/alertify.min.css">
+          <link rel="stylesheet" href="alert/themes/default.min.css">
+          <script src="alert/alertify.min.js"></script>
     
-        <!-- BOOTSTRAP ICONS -->
-        <link rel="stylesheet" href="bt-icons/bootstrap-icons.min.css">
-
-        <!-- DATATABLES -->
-        <link rel="stylesheet" href="dt/datatables.min.css">
-        <link rel="stylesheet" href="dt/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="dt/buttons.dataTables.min.css">
-
-        <!-- ALERTIFYJS -->
-        <link rel="stylesheet" href="alert/alertify.min.css">
-        <link rel="stylesheet" href="alert/themes/default.min.css">
-        <script src="alert/alertify.min.js"></script>
-        
-    </head>
-    <body class="sb-nav-fixed">
-        <!-- ======================================================== -->
-        <!-- 1. CONTENEDOR DINÁMICO PARA LA BARRA SUPERIOR (NAVBAR)   -->
-        <!-- Este div vacío será llenado por JavaScript usando fetch()-->
-        <!-- con el contenido del archivo 'navbar.html'.              -->
-        <!-- ======================================================== -->
-        <div id="contenedor-navbar"></div>
-        <div id="layoutSidenav">
-            <!-- ======================================================== -->
-            <!-- 2. CONTENEDOR DINÁMICO PARA EL MENÚ LATERAL (SIDEBAR)    -->
-            <!-- Este div vacío será llenado por JavaScript usando fetch()-->
-            <!-- con el contenido del archivo 'sidebar.html'.             -->
-            <!-- ======================================================== -->
-            <div id="contenedor-sidebar"></div>
-            
-            <div id="layoutSidenav_content">
-                        <!-- AQUÍ VA TODO LO QUE SE VA A VISUALIZAR EN LA PÁGINA -->
-                        <!-- CUERPO DEL DASHBOARD -->
-                <main>
-                        <div class="container-fluid px-4">
-                            <h1 class="mt-2">Articulos</h1>
-                            <div class="row">
-                                <table id="tabla_Articulos" class="display compact" style="width:100%">
-                                    <thead>
-                                            <tr>
-                                                <th>Id Articulo</th>
-                                                <th>Cod.de barra</th>
-                                                <th>Descripcion</th>
-                                                <th>Marca</th>
-                                                <th>Clasificación</th>
-                                                <th>T. Iva</th>
-                                                <th>Stock Actual</th>
-                                                <th>Preventa</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                    </thead>
-
-                                </table>
-
-                            </div>
+</head>
+<body class="sb-nav-fixed">
+    <div id="contenedor-navbar"></div>
+    <div id="layoutSidenav">
+        <div id="contenedor-sidebar"></div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-2">Mantenimiento de Artículos</h1>
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-box-seam me-1"></i> Mantenimiento de Artículos</span>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNuevoArticulo">
+                                <i class="bi bi-plus-circle"></i> Nuevo Artículo
+                            </button>
                         </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                        <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2026</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                        <div class="card-body">
+                            <table id="tabla_articulos" class="display compact table table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Código</th>
+                                        <th>Descripción</th>
+                                        <th>Marca</th>
+                                        <th>Categoría</th>
+                                        <th>Costo</th>
+                                        <th>Venta</th>
+                                        <th>Stock</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                        </div>
-                </footer>
-            </div>
-        </div>
-    
-    <!-- Modal Nuevo Articulo -->
-    <div class="modal fade" id="modalNuevoArticulo" tabindex="-1" aria-labelledby="modalArticuloLabel" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog">
-            <form id="formNuevoArticulo" class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="modalArticuloLabel"><i class="bi bi-box-seam"></i> Agregar Nuevo Articulo</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                        <div class="mb-2">
-                            <label class="form-label">Código de Barra</label>
-                            <input type="text" id="codigobarra" class="form-control" required minlength="6" maxlength="10">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Descripción</label>
-                            <input type="text" id="descripcion" class="form-control text-uppercase" required minlength="6" maxlength="100">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Marca</label>
-                            <input type="text" id="marca" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Clasificación</label>
-                            <input type="text" id="clasificacion" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">T. Iva</label>
-                            <input type="text" id="tiva" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Stock</label>
-                            <input type="text" id="stock" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Precio de Preventa</label>
-                            <input type="text" id="preventa" class="form-control" required>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-floppy"></i> Guardar Usuario</button>
-                </div>
-            </form>
+            </main>
         </div>
     </div>
 
-    <!-- Modal Editar Articulo -->
-    <div class="modal fade" id="modalEditarArticulo" tabindex="-1"
-    aria-labelledby="modalEditarArticuloLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal fade" id="modalNuevoArticulo" tabindex="-1" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <form id="formNuevoArticulo" class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Registrar Nuevo Artículo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Código de Barras</label>
+                            <input type="text" id="new_codbarra" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <input type="text" id="new_descripcion" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Marca</label>
+                            <input type="text" id="new_marca" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Categoría</label>
+                            <input type="text" id="new_categoria" class="form-control" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Costo (Gs)</label>
+                                <input type="number" id="new_costo" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Venta (Gs)</label>
+                                <input type="number" id="new_preventa" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stock Actual</label>
+                            <input type="number" id="new_stockactual" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Registro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="py-4 bg-light mt-auto">
+            </footer>
+    </div> </div> <script src="dt/jquery-3.7.1.js"></script>
+
+    <div class="modal fade" id="modalEditarArticulo" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog">
             <form id="formEditarArticulo" class="modal-content">
                 <div class="modal-header bg-warning text-dark">
-                        <h5 class="modal-title" id="modalEditarArticuloLabel"><i class="bi bi-pencil-square"></i> Editar Articulo</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Modificar Artículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                        <input type="hidden" id="edit_idarticulo">
-                        <div class="mb-2">
-                            <label class="form-label">Código de Barra</label>
-                            <input type="text" id="edit_codigobarra" class="form-control" required minlength="6" maxlength="10">
+                    <input type="hidden" id="edit_idarticulo">
+                    <div class="mb-3">
+                        <label class="form-label">Descripción del Producto</label>
+                        <input type="text" id="edit_descripcion" class="form-control" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Costo (Gs)</label>
+                            <input type="number" id="edit_costo" class="form-control" required>
                         </div>
-                        <div class="mb-2">
-                            <label class="form-label">Descripción</label>
-                            <input type="text" id="edit_descripcion" class="form-control text-uppercase" required minlength="6" maxlength="100">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Venta (Gs)</label>
+                            <input type="number" id="edit_preventa" class="form-control" required>
                         </div>
-                        <div class="mb-2">
-                            <label class="form-label">Marca</label>
-                            <input type="text" id="edit_marca" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Clasificación</label>
-                            <input type="text" id="edit_clasificacion" class="form-control" required >
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">T. Iva</label>
-                            <input type="text" id="edit_tiva" class="form-control" required >
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Stock</label>
-                            <input type="text" id="edit_stock" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Precio de Preventa</label>
-                            <input type="text" id="edit_preventa" class="form-control" required>
-                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Stock Actual</label>
+                        <input type="number" id="edit_stockactual" class="form-control" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-warning"><i class="bi bi-floppy"></i> Guardar Cambios</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
                 </div>
             </form>
         </div>
     </div>
-    <!-- Modal Eliminar Articulo -->
-    <div class="modal fade" id="modalEliminarArticulo" tabindex="-1"
-    aria-labelledby="modalEliminarArticuloLabel" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="modalEliminarArticuloLabel"><i class="bi bi-exclamation-triangle-fill"></i> Eliminar Articulo</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                        <p class="text-center fw-bold">¿Deseas proceder con la eliminación?</p>
-                        <input type="hidden" id="del_idusuario">
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item"><strong>Codigo de barra:</strong> <span id="del_codigobarra"></span></li>
-                            <li class="list-group-item"><strong>Descripción:</strong> <span id="del_descripcion"></span></li>
-                            <li class="list-group-item"><strong>Marca:</strong> <span id="del_marca"></span></li>
-                            <li class="list-group-item"><strong>Clasificación:</strong> <span id="del_clasificacion"></span></li>
-                            <li class="list-group-item"><strong>T. Iva:</strong> <span id="del_tiva"></span></li>
-                            <li class="list-group-item"><strong>Stock</strong><span id="del_stock"></span></li>
-                            <li class="list-group-item"><strong>Preventa</strong><span id="del_preventa"></span></li>
-                        </ul>
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="btnConfirmarEliminar"><i class="bi bi-trash"></i> Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-        <script src="js/funcionesSistema.js"></script>
-        <!-- MENU -->
-        <script src="menu/bootstrap.bundle.min.js"></script>
-        <script src="menu/scripts.js"></script>
-        <!-- DATATABLES -->
-        <script src="dt/jquery-3.7.1.js"></script>
-        <script src="dt/datatables.min.js"></script>
-        <script src="dt/jquery.dataTables.min.js"></script>
-        <!-- DATATABLES Buttons extension -->
-        <script src="dt/dataTables.buttons.min.js"></script>
-        <script src="dt/buttons.print.min.js"></script>
-        <script src="dt/buttons.html5.min.js"></script>
-        <!-- DATATABLES JSZip y pdfmake para exportar -->
-        <script src="dt/jszip.min.js"></script>
-        <script src="dt/pdfmake.min.js"></script>
-        <script src="dt/vfs_fonts.js"></script>
-        <!-- DATATABLES Idioma Español -->
-        <script src="dt/es-ES.js"></script>
 
-        <script>
-            //Al cargarse la página---------------------------------------------------------------------------
-            //Control de seguridad en la apertura de la página------------------------------------------------
-            var nom = localStorage.getItem("nomUsuario");
-            if (nom == "" || nom == null){
-                window.location.href = "error.html"; // Redirige al login
-            }
-            //Fin del Control de seguridad en la apertura de la página----------------------------------------
+        <script src="js/seguridad.js"></script>
+          <script src="js/funcionesSistema.js"></script>
+          <!-- MENU -->
+          <script src="menu/bootstrap.bundle.min.js"></script>
+          <script src="menu/scripts.js"></script>
+          <!-- DATATABLES -->
+          <script src="dt/jquery-3.7.1.js"></script>
+          <script src="dt/datatables.min.js"></script>
+          <script src="dt/jquery.dataTables.min.js"></script>
+          <!-- DATATABLES Buttons extension -->
+          <script src="dt/dataTables.buttons.min.js"></script>
+          <script src="dt/buttons.print.min.js"></script>
+          <script src="dt/buttons.html5.min.js"></script>
+          <!-- DATATABLES JSZip y pdfmake para exportar -->
+          <script src="dt/jszip.min.js"></script>
+          <script src="dt/pdfmake.min.js"></script>
+          <script src="dt/vfs_fonts.js"></script>
+          <!-- DATATABLES Idioma Español -->
+          <script src="dt/es-ES.js"></script>
+
+    <script>
+    // Variables Globales
+    var articulos = [];
+    var tabla;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // 1. Cargar componentes (Navbar/Sidebar)
+        cargarComponentes();
+
+        // 2. Inicializar Datos desde BD o LocalStorage
+        // Importante: Llamamos a la función datos() de tu bd.js si existe
+        if (typeof datos === "function") { 
+            datos(); 
+        }
+
+        // Recuperar del LocalStorage o usar los de bd.js (lista_articulos)
+        const storageArt = localStorage.getItem("articulos");
+        if (storageArt) {
+            articulos = JSON.parse(storageArt);
+        } else if (typeof lista_articulos !== 'undefined') {
+            articulos = lista_articulos;
+            localStorage.setItem("articulos", JSON.stringify(articulos));
+        }
+
+        // 3. Cargar la Tabla
+        cargarTablaArticulos();
+
+        // --- EVENTO GUARDAR NUEVO ---
+        $('#formNuevoArticulo').on('submit', function (e) {
+            e.preventDefault();
+            // Capturamos los valores
+            const desc = $('#new_descripcion').val();
+            const cod = $('#new_codbarra').val();
+            // Validación de seguridad para evitar el error de tu captura
+            if (!desc || !cod) {
+             alertify.error("Por favor, complete la descripción y el código");
+            return;
+             }
+            const nuevoId = articulos.length > 0 ? Math.max(...articulos.map(a => a.idarticulo)) + 1 : 1;
             
-            //------------------------------------------------------------------------------------------------
-            // 1. SIMULACIÓN DE BASE DE DATOS CON LOCALSTORAGE
-            // Recuperar el array de objetos 'usuarios' desde localStorage. 
-            // Si no existe (es null), usamos un array vacío [] gracias al operador lógico ||
-            var articulos = JSON.parse(localStorage.getItem("articulos")) || [];
+             const nuevoArt = {
+                idarticulo: nuevoId,
+                codbarra: $('#new_codbarra').val(),
+                descripcion: $('#new_descripcion').val().toUpperCase(),
+                idmarca: parseInt($('#new_idmarca').val()),
+                nom_marca: $("#new_idmarca option:selected").text(), // Captura el texto (ZARA, NIKE, etc.)
+                idclasificacion: parseInt($('#new_idclasificacion').val()),
+                nom_clasificacion: $("#new_idclasificacion option:selected").text(), // Captura el texto (REMERAS, JEANS, etc.)
+                costo: parseFloat($('#new_costo').val()),
+                preventa: parseFloat($('#new_preventa').val()),
+                stockactual: parseInt($('#new_stockactual').val())
+            };
 
-            let tabla;
-            // 2. INSTANCIAS DE COMPONENTES BOOTSTRAP
-            // Inicializamos los modales de Bootstrap en variables para poder abrirlos (show) y cerrarlos (hide) desde JavaScript
-            const modalNArticulo = new bootstrap.Modal(document.getElementById('modalNuevoArticulo'));
+            articulos.push(nuevoArt);
+            localStorage.setItem('articulos', JSON.stringify(articulos)); // Guardar
+            tabla.clear().rows.add(articulos).draw(); // Refrescar tabla
+            guardarYRefrescar("Artículo registrado con éxito");
+            $('#modalNuevoArticulo').modal('hide');
+            this.reset();
+            alertify.success("Artículo registrado con éxito");
+        });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                // Llamada a la función que inyecta el menú (ubicada en js/funcionesSistema.js)
-                // Esto evita tener que copiar y pegar todo el HTML del menú en cada página.
-                cargarComponentes();
-                cargarTablaArticulo();
+        // --- EVENTO GUARDAR EDICIÓN ---
+        $('#formEditarArticulo').on('submit', function (e) {
+            e.preventDefault();
+            const id = $('#edit_idarticulo').val();
+            const index = articulos.findIndex(a => a.idarticulo == id);
 
-                //Evento para Nuevo Usuario----------------------------------------------------------
-                // 3. CAPTURAR EL ENVÍO DEL FORMULARIO (SUBMIT)
-                document.getElementById('formNuevoArticulo').addEventListener('submit', function (e) {
-                        // Usamos preventDefault() para evitar que la página se recargue (comportamiento por defecto de los formularios)
-                        e.preventDefault();
+            if (index !== -1) {
+                articulos[index].descripcion = $('#edit_descripcion').val().toUpperCase();
+                articulos[index].costo = parseFloat($('#edit_costo').val());
+                articulos[index].preventa = parseFloat($('#edit_preventa').val());
+                articulos[index].stockactual = parseInt($('#edit_stockactual').val());
 
-                        const nuevoArticulo = {
-                            idarticulo: obtenerSiguienteId(articulos),
-                            codigobarra: document.getElementById('codigobarra').value.trim(),
-                            descripcion: document.getElementById('descripcion').value.trim().toUpperCase(),
-                            marca: document.getElementById('marca').value.trim(),
-                            clasificacion: document.getElementById('clasificacion').value.trim(),
-                            tiva: document.getElementById('tiva').value.trim(),
-                            stock: document.getElementById('stock').value.trim(),
-                            preventa: document.getElementById('preventa').value.trim()
-                        };
-                        });
-
-                        if (Object.values(nuevoArticulo).some(val => val === '')) {
-                            alertify.error('Todos los campos son obligatorios');
-                            return;
-                        }
-
-                        const articulosExistente = articulos.find(a => a.idarticulo === nuevoArticulo.idarticulo);
-                        if (articulosExistente) {
-                            alertify.error('El ID de articulo ya existe');
-                            return;
-                        }
-
-                        articulos.push(nuevoArticulo);
-                        guardarArticulos(articulos);
-                        this.reset();
-                        tabla.row.add(nuevoArticulo).draw();
-                        modalNArticulo.hide();
-                        alertify.success("Registro guardado");
-                });
-
-                
-                const modalEArticulo = new bootstrap.Modal(document.getElementById('modalEditarArticulo'));
-                // Evento para botón editar--------------------------------------------------------------
-                // 4. DELEGACIÓN DE EVENTOS (EVENT DELEGATION)
-                // Como los botones de "Editar" y "Eliminar" son creados dinámicamente por el DataTable, no podemos asignarles 
-                // un EventListener directo al cargar la página. Por eso, escuchamos los clics en TODO el 'document' y 
-                // verificamos si el elemento clickeado (e.target) corresponde a nuestro botón.
-                document.addEventListener('click', function (e) {
-                        if (e.target.closest('.btn-editar')) {
-                            const id = parseInt(e.target.closest('.btn-editar').dataset.id);
-                            const articulo = articulos.find(a => a.idarticulo === id);
-                            if (articulo) {
-                                document.getElementById('edit_idarticulo').value = articulo.idarticulo;
-                                document.getElementById('edit_codigobarra').value = articulo.codigobarra;
-                                document.getElementById('edit_descripcion').value = articulo.descripcion;
-                                document.getElementById('edit_marca').value = articulo.marca;
-                                document.getElementById('edit_clasificacion').value = articulo.clasificacion;
-                                document.getElementById('edit_tiva').value = articulo.tiva;
-                                document.getElementById('edit_stock').value = articulo.stock;
-                                document.getElementById('edit_preventa').value= articulo.preventa;
-                                modalEArticulo.show();
-                            }
-                        }
-                });
-
-                // Guardar cambios al editar-----------------------------------------------------------
-                document.getElementById('formEditarArticulo').addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        const id = parseInt(document.getElementById('edit_idarticulo').value);
-                        const index = articulos.findIndex(a => a.idarticulo === id);
-                        if (index !== -1) { //Si el articulo existe dentro de la lista
-                            articulos[index] = {
-                                idarticulo: id,
-                                codigobarra: document.getElementById('edit_codigobarra').value.trim(),
-                                descripcion: document.getElementById('edit_descripcion').value.trim().toUpperCase(),
-                                marca: document.getElementById('edit_marca').value.trim(),
-                                clasificacion: document.getElementById('edit_clasificacion').value.trim(),
-                                tiva: document.getElementById('edit_tiva').value.trim(),
-                                stock: document.getElementById('edit_stock').value.trim(),
-                                preventa: document.getElementById('edit_preventa').value.trim()
-                            };
-                            guardarArticulos(articulos);
-                            tabla.clear().rows.add(articulos).draw();
-                            modalEArticulo.hide();
-                            alertify.success("Artículo actualizado");
-                            //.clear(): Borra todo el contenido actual de la tabla
-                            //.rows.add(usuarios): Toma el nuevo array usuarios y lo carga en la tabla
-                            //.draw(): Renderiza los cambios. Sin esto, la tabla se quedaría en blanco o no mostraría los cambios
-                        }
-                });
-
-                const modalDelArticulo = new bootstrap.Modal(document.getElementById('modalEliminarArticulo'));
-
-                // Evento para botón eliminar (Abre el modal)
-                document.addEventListener('click', function (e) {
-                        if (e.target.closest('.btn-eliminar')) {
-                            const id = parseInt(e.target.closest('.btn-eliminar').dataset.id);
-                            const articulo = articulos.find(a => a.idarticulo === id);
-                            if (articulo) {
-                                document.getElementById('del_idarticulo').value = articulo.idarticulo;
-                                document.getElementById('del_codigobarra').textContent = articulo.codigobarra;
-                                document.getElementById('del_descripcion').textContent = articulo.descripcion;
-                                document.getElementById('del_marca').textContent = articulo.marca;
-                                document.getElementById('del_clasificacion').textContent = articulo.clasificacion;
-                                document.getElementById('del_tiva').textContent = articulo.tiva;
-                                document.getElementById('del_stock').textContent = articulo.stock;
-                                document.getElementById('del_preventa').textContent = articulo.preventa;
-                                modalDelArticulo.show();
-                            }
-                        }
-                });
-
-                // Evento para el botón eliminar dentro del modal (Ejecuta Alertify)
-                document.getElementById('btnConfirmarEliminar').addEventListener('click', function() {
-                        const id = parseInt(document.getElementById('del_idarticulo').value);
-                        alertify.confirm("Eliminar artículo", "¿Realmente deseas eliminar de forma permanente a este artículo?",
-                            function(){
-                                articulo = articulos.filter(a => a.idarticulo !== id);
-                                guardarArticulos(articulo);
-                                tabla.clear().rows.add(articulo).draw();
-                                modalDelArticulo.hide();
-                                alertify.success("Artículo eliminado correctamente");
-                            },
-                            function(){
-                                modalDelArticulo.hide();
-                                alertify.error("Eliminación cancelada");
-                            }
-                        ).set('labels', {ok:'Sí, eliminar', cancel:'No, mantener'});
-                });
-            //----------------------------------    --------------------------------------------
-            function cargarTablaArticulo(){
-                // Inicializar el DataTable
-                tabla = new DataTable("#tabla_Articulos", {
-                        data: articulos,
-                        columns: [
-                            { data: 'idarticulo', title: 'Id Articulo' },
-                            { data: 'codbarra', title: 'Codigo de barra' },
-                            { data: 'descripcion', title: 'descripción' },
-                            { data: 'idmarca', title: 'Marca' },
-                            { data: 'idclasificacion', title: 'Clasificacion' },
-                            {data: 'tiva', title: 'T. Iva' },
-                            { data: 'stockactual', title: 'Stock' },
-                            { data: 'preventa', title: 'Preventa' },
-                            {
-                                data: null,
-                                render: function (data, type, row) {
-                                return `
-                                    <button class="btn btn-sm btn-warning me-1 btn-editar" 
-                                    data-id="${row.idarticulo}"><i class="bi bi-pencil-square"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-danger btn-eliminar" 
-                                    data-id="${row.idarticulo}"><i class="bi bi-trash">
-                                    </i></button>
-                                `;
-                                }
-                            }
-                        ],
-                        dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                extend: 'print',
-                                text: '<i class="bi bi-printer"></i> Imprimir',
-                                exportOptions: {
-                                    columns: [0, 1, 2, 3, 4, 5, 6, 7] // Excluye columna de acciones (índice 6)
-                                }
-                            },
-                            {
-                                extend: 'excelHtml5',
-                                text: '<i class="bi bi-filetype-xlsx"></i> Exportar a Excel',
-                                exportOptions: {
-                                    columns: [0, 1, 2, 3, 4, 5, 6, 7] // Excluye columna de acciones (índice 6)
-                                }
-                            },
-                            {
-                                extend: 'pdfHtml5',
-                                text: '<i class="bi bi-filetype-pdf"></i> Exportar a PDF',
-                                exportOptions: {
-                                    columns: [0, 1, 2, 3, 4, 5, 6, 7] // Excluye columna de acciones (índice 6)
-                                },
-                                customize: function (doc) {
-                                    // 1. Obtener fecha y hora en formato dd/MM/aaaa HH:mm:ss
-                                    const now = new Date();
-                                    const fecha = now.toLocaleDateString('es-PY', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                                    const hora = now.toLocaleTimeString('es-PY', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-                                    const fechaHora = fecha + ' ' + hora;
-
-                                    // 2. Configurar el pie de página (footer) del documento PDF
-                                    doc.footer = function(currentPage, pageCount) {
-                                            return {
-                                                columns: [
-                                                    {
-                                                        alignment: 'left',
-                                                        text: fechaHora,
-                                                        margin: [20, 10], // Margen: [Izquierda/Derecha, Arriba/Abajo]
-                                                        fontSize: 8
-                                                    },
-                                                    {
-                                                        alignment: 'right',
-                                                        text: 'Pág. ' + currentPage.toString() + '/' + pageCount.toString(),
-                                                        margin: [20, 10],
-                                                        fontSize: 8
-                                                    }
-                                                ]
-                                            };
-                                    };
-
-                                    // Verifica si `content` tiene una tabla definida
-                                    for (let i = 0; i < doc.content.length; i++) {
-                                            if (doc.content[i].table !== undefined) {
-                                                const tableNode = doc.content[i];
-
-                                                // Si hay body, ajustamos los anchos
-                                                if (tableNode.table.body && tableNode.table.body.length > 0) {
-                                                    // 'auto' se ajusta al tamaño del contenido (como la cabecera)
-                                                    // '*' toma todo el espacio sobrante (ideal para el Nombre)
-                                                    tableNode.table.widths = ['auto', 'auto', '*', 'auto', 'auto', 'auto','auto','auto'];
-                                                }
-
-                                                break; // salimos del loop luego de encontrar la tabla
-                                            }
-                                    }
-                                }
-                            },
-                            {
-                                text: '<i class="bi bi-file-earmark-plus"></i> Nuevo articulo',
-                                className: 'btn btn-sm btn-primary',
-                                action: function (e, dt, node, config) {
-                                    // Abrir un modal para crear un nuevo artículo
-                                    $('#modalNuevoArticulo').modal('show');
-                                }
-                            }
-                        ],
-                        responsive: true,
-                        language: {
-                            url: 'dt/es-ES.js'
-                        },
-                        initComplete: function () {
-                            // Aplicar clases de Bootstrap a los botones
-                            const buttons = document.querySelectorAll('.dt-button');
-                            buttons.forEach(btn => {
-                                btn.classList.remove('dt-button');
-                                if (btn.textContent.includes('articulo')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-primary');
-                                } else if (btn.textContent.includes('Imprimir')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-info');
-                                } else if (btn.textContent.includes('Excel')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-success');
-                                } else if (btn.textContent.includes('PDF')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-danger');
-                                }
-                            });
-                        }
-                });
-                
+                guardarYRefrescar("Artículo actualizado");
+                $('#modalEditarArticulo').modal('hide');
             }
-            //------------------------------------------------------------------------------
-            function guardarArticulos(data) {
-                localStorage.setItem('articulos', JSON.stringify(data));
-            }
-            //------------------------------------------------------------------------------
-            function obtenerSiguienteId(articulos) {
-                if (articulos.length === 0){
-                        return 1;
-                }else{
-                        const maxId = Math.max(...articulos.map(a => a.idarticulo || 0));
-                        return maxId + 1;
+        });
+    });
+
+    function cargarTablaArticulos() {
+        if ($.fn.DataTable.isDataTable('#tabla_articulos')) {
+            $('#tabla_articulos').DataTable().destroy();
+        }
+
+        tabla = $('#tabla_articulos').DataTable({
+            data: articulos,
+            columns: [
+                { data: 'idarticulo' },
+                { data: 'codbarra' },
+                { data: 'descripcion' },
+                { data: 'nom_marca' },
+                { data: 'nom_clasificacion' },
+                { 
+                    data: 'costo', 
+                    render: (d) => 'Gs ' + parseFloat(d || 0).toLocaleString('es-PY') 
+                },
+                { 
+                    data: 'preventa', 
+                    render: (d) => 'Gs ' + parseFloat(d || 0).toLocaleString('es-PY') 
+                },
+                { data: 'stockactual', className: 'text-center' },
+                {
+                    data: null,
+                    className: 'text-center',
+                    render: function(row) {
+                        return `
+                            <div class="btn-group">
+                                <button class="btn btn-outline-warning btn-sm btn-editar" data-id="${row.idarticulo}"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-outline-danger btn-sm btn-eliminar" data-id="${row.idarticulo}"><i class="bi bi-trash"></i></button>
+                            </div>`;
+                    }
                 }
-            }
-            //------------------------------------------------------------------------------
-            
-        </script>
-        
+            ],
+            dom: 'Bfrtip', 
+            buttons: [
+            {
+                extend: 'copy',
+                text: '<i class="bi bi-clipboard"></i> Copiar',
+                className: 'btn btn-secondary btn-sm',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7] }
+            },
+            {
+                extend: 'excel',
+                text: '<i class="bi bi-file-earmark-excel"></i> Excel',
+                className: 'btn btn-success btn-sm',
+                title: 'PUNTO ELEGANCIA - INFORME ARTÍCULOS',
+                filename: 'Punto_Elegancia_Articulos',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7] }
+            },
+            {
+                extend: 'pdf',
+                text: '<i class="bi bi-file-earmark-pdf"></i> PDF',
+                className: 'btn btn-danger btn-sm',
+                orientation: 'landscape',
+                pageSize:'A4',
+                title: '', //aqui ira el membrete
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7] },
+                customize: function (doc) {
+                // --- MEMBRETE Y LOGO ---
+                // doc.content[0] es el título, lo reemplazamos por un diseño profesional
+                doc.content.splice(0, 0, {
+                    margin: [0, 0, 0, 12],
+                    table: {
+                        widths: [80, '*', 'auto'],
+                        body: [
+                            [
+                                // Aquí iría tu logo en Base64 (puedes dejarlo vacío o poner texto)
+                                { text: 'PUNTO\nELEGANCIA', fontSize: 14, bold: true, color: '#4e73df', alignment: 'center' },
+                                {
+                                    stack: [
+                                        { text: 'PUNTO ELEGANCIA - SISTEMA DE GESTIÓN', fontSize: 16, bold: true },
+                                        { text: 'Venta de Ropa y Accesorios', fontSize: 10, color: '#666' },
+                                        { text: 'Belén, Concepción - Paraguay', fontSize: 10, color: '#666' }
+                                    ],
+                                    alignment: 'left',
+                                    margin: [10, 0, 0, 0]
+                                },
+                                {
+                                    stack: [
+                                        { text: 'INFORME DE ARTÍCULOS', fontSize: 12, bold: true, alignment: 'right' },
+                                        { text: 'Fecha: ' + new Date().toLocaleDateString(), fontSize: 10, alignment: 'right' },
+                                        { text: 'Hora: ' + new Date().toLocaleTimeString(), fontSize: 10, alignment: 'right' }
+                                    ]
+                                }
+                            ]
+                        ]
+                    },
+                    layout: 'noBorders'
+                });
+                // --- NÚMERO DE PÁGINA (FOOTER) ---
+                var objLayout = {};
+                objLayout['hLineWidth'] = function(i) { return .5; };
+                objLayout['vLineWidth'] = function(i) { return .5; };
+                objLayout['hLineColor'] = function(i) { return '#aaa'; };
+                objLayout['vLineColor'] = function(i) { return '#aaa'; };
+                objLayout['paddingLeft'] = function(i) { return 4; };
+                objLayout['paddingRight'] = function(i) { return 4; };
+                doc.content[1].layout = objLayout; // Aplica bordes finos a la tabla de datos
 
+                doc['footer'] = (function(page, pages) {
+                    return {
+                        columns: [
+                            {
+                                alignment: 'left',
+                                text: ['Impreso por: ', { text: localStorage.getItem("nomUsuario") || 'Sistema' }]
+                            },
+                            {
+                                alignment: 'right',
+                                text: ['Página ', { text: page.toString() }, ' de ', { text: pages.toString() }]
+                            }
+                        ],
+                        margin: [40, 0],
+                        fontSize: 9
+                    }
+                });
+            }
+            },
+            {
+                extend: 'print',
+                text: '<i class="bi bi-printer"></i> Imprimir',
+                className: 'btn btn-info btn-sm',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7] }
+            }
+        ],
+        language: spanish
+    });
+}
+
+
+
+    function guardarYRefrescar(mensaje) {
+        localStorage.setItem('articulos', JSON.stringify(articulos));
+        tabla.clear().rows.add(articulos).draw();
+        alertify.success(mensaje);
+    }
+
+    // Eventos delegados para botones de fila
+    $(document).on('click', '.btn-editar', function() {
+        const id = $(this).data('id');
+        const art = articulos.find(a => a.idarticulo == id);
+        if (art) {
+            $('#edit_idarticulo').val(art.idarticulo);
+            $('#edit_descripcion').val(art.descripcion);
+            $('#edit_costo').val(art.costo);
+            $('#edit_preventa').val(art.preventa);
+            $('#edit_stockactual').val(art.stockactual);
+            $('#modalEditarArticulo').modal('show');
+        }
+    });
+
+    $(document).on('click', '.btn-eliminar', function() {
+        const id = $(this).data('id');
+        alertify.confirm("Eliminar", "¿Seguro que desea eliminar este artículo?", 
+        function() {
+            articulos = articulos.filter(a => a.idarticulo != id);
+            guardarYRefrescar("Eliminado correctamente");
+        }, null);
+    });
+    
+</script>
 </body>
 </html>
