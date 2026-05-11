@@ -135,7 +135,20 @@
                              </tr>
                         </thead>
                     </table>
-                   
+                            <!-- clientes -->
+                    <p class="fw-bold text-primary">Clientes</p>
+                    <table id="tabla_clientes" class="display compact" style="width:100%">
+                        <thead>
+                                <tr>
+                                    <th>Id Cliente</th>
+                                    <th>N° Cédula</th>
+                                    <th>Nombre</th>
+                                    <th>Celular</th>
+                                    <th>Dirección</th>
+                                    <th >Ciudad</th>
+                                </tr>
+                        </thead>
+                    </table>
                    <!-- PROVEEDORES -->
                    <p class="fw-bold text-primary">PROVEEDORES</p>
                    <table id="tabla_proveedores" class="display compact" style="width:100%">
@@ -334,6 +347,7 @@
                     lengthChange: false, //Oculta el selector de cantidad de registros por página
                     pageLength: 5        //Número de registros por página
             });
+            
 
             // Recuperar el array de objetos desde localStorage. PROVEEDORES
             var proveedores = JSON.parse(localStorage.getItem("proveedores")) || [];
@@ -469,6 +483,7 @@
                 lengthChange: false,
                 pageLength: 5
             });
+            
 
             // Recuperar el array de objetos desde localStorage. COMPRAS
             var comprascabecera = JSON.parse(localStorage.getItem("comprascabecera")) || [];
@@ -490,6 +505,7 @@
                     proveedor: dicProveedores[c.idproveedor] || "Desconocido"
                 };
             });
+            
 
             // Inicializar el DataTable
             tabla = new DataTable("#tabla_comprascabecera", {
@@ -589,6 +605,31 @@
                 lengthChange: false,
                 pageLength: 5
             });
+            var clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+            
+            // Si ya existe una instancia de DataTable, destruirla
+            if ($.fn.DataTable.isDataTable("#tabla_clientes")) {
+                $('#tabla_clientes').DataTable().clear().destroy();
+            }
+
+            // Inicializar el DataTable
+            tabla = new DataTable("#tabla_clientes", {
+                    data: clientes,
+                    columns: [
+                        { data: 'idclientes', title: 'Id Clientes' },
+                        { data: 'cedula', title: 'N° Cédula' },
+                        { data: 'nombre', title: 'Nombre' },
+                        { data: 'celular', title: 'Celular' },
+                        { data: 'direccion', title: 'Direccion' },
+                        { data: 'ciudad', title: 'Ciudad' }
+                        
+                    ],
+                    language: spanish,
+                    searching: false,    //Oculta el buscador
+                    lengthChange: false, //Oculta el selector de cantidad de registros por página
+                    pageLength: 5        //Número de registros por página
+            });
+            
         }
         //-------------------------------------------------------------------------------------
     </script>

@@ -205,9 +205,9 @@ function datos(){
             celular: "0971-001100",
             direccion: "ALEJO GARCÍA Y EUSEBIO AYALA",
             ciudad: "CIUDAD DEL ESTE"
-        },
+        }
     ];
-    localStorage.setItem("Clientes", JSON.stringify(clientes));
+    localStorage.setItem("clientes", JSON.stringify(clientes));
     // CREAR UN ARRAY de objetos: ventas---------------------------------------------
     // Tabla: Ventas
 
@@ -227,7 +227,7 @@ function datos(){
             estadoventa: "COMPLETADA"
 
         }
-    ]
+    ];
     var ventasdetalle = [
         {
             idventadet: 1,
@@ -237,7 +237,7 @@ function datos(){
             preuni: 100000, 
             subtotal: 100000
         }
-    ]
+    ];
     // Guardar en localStorage como cadena JSON
     localStorage.setItem("ventas", JSON.stringify(ventas));
     localStorage.setItem("ventasdetalle", JSON.stringify(ventasdetalle));
