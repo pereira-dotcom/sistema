@@ -401,11 +401,18 @@
                          buttons: [
                               {
                                    extend: 'print',
-                                   text: '<i class="bi bi-printer"></i> Imprimir'
+                                   text: '<i class="bi bi-printer"></i> Imprimir',
+                                   exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6] // Excluye columna de acciones (índice 7)
+                                   }
                               },
                               {
                                    extend: 'excelHtml5',
-                                   text: '<i class="bi bi-filetype-xlsx"></i> Exportar a Excel'
+                                   text: '<i class="bi bi-filetype-xlsx"></i> Exportar a Excel',
+                                   exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6] // Excluye columna de acciones (índice 7)
+                                   }
+
                               },
                               {
                                    extend: 'pdfHtml5',

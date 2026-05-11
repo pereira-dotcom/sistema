@@ -45,25 +45,23 @@
                         <!-- CUERPO DEL DASHBOARD -->
                 <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-2">Articulos</h1>
+                            <h1 class="mt-2">Ventas</h1>
                             <div class="row">
-                                <table id="tabla_Articulos" class="display compact" style="width:100%">
+                                <table id="tabla_proveedores" class="display compact" style="width:100%">
                                     <thead>
                                             <tr>
-                                                <th>Id Articulo</th>
-                                                <th>Cod.de barra</th>
-                                                <th>Descripcion</th>
-                                                <th>Marca</th>
-                                                <th>Clasificación</th>
-                                                <th>T. Iva</th>
-                                                <th>Stock Actual</th>
-                                                <th>Preventa</th>
+                                                <th>ID de la Venta</th>
+                                                <th>Nº RUC</th>
+                                                <th>Nombre</th>
+                                                <th>Razon Social</th>
+                                                <th>Dirección</th>
+                                                <th>Telefono</th>
+                                                <th>Ciudad</th>
                                                 <th>Acciones</th>
                                             </tr>
                                     </thead>
 
                                 </table>
-
                             </div>
                         </div>
                 </main>
@@ -82,90 +80,82 @@
             </div>
         </div>
     
-    <!-- Modal Nuevo Articulo -->
-    <div class="modal fade" id="modalNuevoArticulo" tabindex="-1" aria-labelledby="modalArticuloLabel" aria-hidden="true" data-bs-backdrop="static">
+    <!-- Modal Nuevo Proveedor -->
+    <div class="modal fade" id="modalNuevoProveedor" tabindex="-1" aria-labelledby="modalProveedorLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog">
-            <form id="formNuevoArticulo" class="modal-content">
+            <form id="formNuevoProveedor" class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="modalArticuloLabel"><i class="bi bi-box-seam"></i> Agregar Nuevo Articulo</h5>
+                        <h5 class="modal-title" id="modalProveedorLabel"><i class="bi bi-person-plus-fill"></i> Agregar Nuevo Proveedor</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                         <div class="mb-2">
-                            <label class="form-label">Código de Barra</label>
-                            <input type="text" id="codigobarra" class="form-control" required minlength="6" maxlength="10">
+                            <label class="form-label">N° RUC</label>
+                            <input type="text" id="ruc" class="form-control">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Descripción</label>
-                            <input type="text" id="descripcion" class="form-control text-uppercase" required minlength="6" maxlength="100">
+                            <label class="form-label">Nombre completo</label>
+                            <input type="text" id="nombre" class="form-control text-uppercase" required minlength="6" maxlength="50">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Marca</label>
-                            <input type="text" id="marca" class="form-control" required>
+                            <label class="form-label">Razon Social</label>
+                            <input type="text" id="razon_social" class="form-control" required minlength="6" maxlength="12">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Clasificación</label>
-                            <input type="text" id="clasificacion" class="form-control" required>
+                            <label class="form-label">Dirección</label>
+                            <input type="text" id="direccion" class="form-control" required minlength="5" maxlength="30">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">T. Iva</label>
-                            <input type="text" id="tiva" class="form-control" required>
+                            <label class="form-label">Teléfono</label>
+                            <input type="text" id="telefono" class="form-control" required minlength="5" maxlength="30">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Stock</label>
-                            <input type="text" id="stock" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Precio de Preventa</label>
-                            <input type="text" id="preventa" class="form-control" required>
+                            <label class="form-label">Ciudad</label>
+                            <input type="text" id="ciudad" class="form-control" required minlength="5" maxlength="30">
                         </div>
                 </div>
                 <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-floppy"></i> Guardar Usuario</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-floppy"></i> Guardar Proveedor</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Editar Articulo -->
-    <div class="modal fade" id="modalEditarArticulo" tabindex="-1"
-    aria-labelledby="modalEditarArticuloLabel" aria-hidden="true" data-bs-backdrop="static">
+    <!-- Modal Editar Proveedor -->
+    <div class="modal fade" id="modalEditarProveedor" tabindex="-1"
+    aria-labelledby="modalEditarProveedorLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog">
-            <form id="formEditarArticulo" class="modal-content">
+            <form id="formEditarProveedor" class="modal-content">
                 <div class="modal-header bg-warning text-dark">
-                        <h5 class="modal-title" id="modalEditarArticuloLabel"><i class="bi bi-pencil-square"></i> Editar Articulo</h5>
+                        <h5 class="modal-title" id="modalEditarProveedorLabel"><i class="bi bi-pencil-square"></i> Editar Proveedor</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                        <input type="hidden" id="edit_idarticulo">
+                        <input type="hidden" id="edit_idproveedor">
                         <div class="mb-2">
-                            <label class="form-label">Código de Barra</label>
-                            <input type="text" id="edit_codigobarra" class="form-control" required minlength="6" maxlength="10">
+                            <label class="form-label">N° RUC</label>
+                            <input type="text" id="edit_ruc" class="form-control" required>
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Descripción</label>
-                            <input type="text" id="edit_descripcion" class="form-control text-uppercase" required minlength="6" maxlength="100">
+                            <label class="form-label">Nombre completo</label>
+                            <input type="text" id="edit_nombre" class="form-control text-uppercase" required minlength="6" maxlength="50">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Marca</label>
-                            <input type="text" id="edit_marca" class="form-control" required>
+                            <label class="form-label">Razon Social</label>
+                            <input type="text" id="edit_razon_social" class="form-control" required minlength="6" maxlength="12">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Clasificación</label>
-                            <input type="text" id="edit_clasificacion" class="form-control" required >
+                            <label class="form-label">Dirección</label>
+                            <input type="text" id="edit_direccion" class="form-control" required minlength="5" maxlength="30">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">T. Iva</label>
-                            <input type="text" id="edit_tiva" class="form-control" required >
+                            <label class="form-label">Teléfono</label>
+                            <input type="text" id="edit_telefono" class="form-control" required minlength="5" maxlength="30">
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Stock</label>
-                            <input type="text" id="edit_stock" class="form-control" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Precio de Preventa</label>
-                            <input type="text" id="edit_preventa" class="form-control" required>
+                            <label class="form-label">Ciudad</label>
+                            <input type="text" id="edit_ciudad" class="form-control" required minlength="5" maxlength="30">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -175,26 +165,25 @@
             </form>
         </div>
     </div>
-    <!-- Modal Eliminar Articulo -->
-    <div class="modal fade" id="modalEliminarArticulo" tabindex="-1"
-    aria-labelledby="modalEliminarArticuloLabel" aria-hidden="true" data-bs-backdrop="static">
+    <!-- Modal Eliminar Proveedor -->
+    <div class="modal fade" id="modalEliminarProveedor" tabindex="-1"
+    aria-labelledby="modalEliminarProveedorLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="modalEliminarArticuloLabel"><i class="bi bi-exclamation-triangle-fill"></i> Eliminar Articulo</h5>
+                        <h5 class="modal-title" id="modalEliminarProveedorLabel"><i class="bi bi-exclamation-triangle-fill"></i> Eliminar Proveedor</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                         <p class="text-center fw-bold">¿Deseas proceder con la eliminación?</p>
-                        <input type="hidden" id="del_idusuario">
+                        <input type="hidden" id="del_idproveedor">
                         <ul class="list-group mb-3">
-                            <li class="list-group-item"><strong>Codigo de barra:</strong> <span id="del_codigobarra"></span></li>
-                            <li class="list-group-item"><strong>Descripción:</strong> <span id="del_descripcion"></span></li>
-                            <li class="list-group-item"><strong>Marca:</strong> <span id="del_marca"></span></li>
-                            <li class="list-group-item"><strong>Clasificación:</strong> <span id="del_clasificacion"></span></li>
-                            <li class="list-group-item"><strong>T. Iva:</strong> <span id="del_tiva"></span></li>
-                            <li class="list-group-item"><strong>Stock</strong><span id="del_stock"></span></li>
-                            <li class="list-group-item"><strong>Preventa</strong><span id="del_preventa"></span></li>
+                            <li class="list-group-item"><strong>RUC:</strong> <span id="del_ruc"></span></li>
+                            <li class="list-group-item"><strong>Nombre:</strong> <span id="del_nombre"></span></li>
+                            <li class="list-group-item"><strong>Razon Social:</strong> <span id="del_razon_social"></span></li>
+                            <li class="list-group-item"><strong>Dirección:</strong> <span id="del_direccion"></span></li>
+                            <li class="list-group-item"><strong>Teléfono:</strong> <span id="del_telefono"></span></li>
+                            <li class="list-group-item"><strong>Ciudad:</strong> <span id="del_ciudad"></span></li>
                         </ul>
                 </div>
                 <div class="modal-footer">
@@ -234,60 +223,52 @@
             
             //------------------------------------------------------------------------------------------------
             // 1. SIMULACIÓN DE BASE DE DATOS CON LOCALSTORAGE
-            // Recuperar el array de objetos 'usuarios' desde localStorage. 
+            // Recuperar el array de objetos 'proveedores' desde localStorage. 
             // Si no existe (es null), usamos un array vacío [] gracias al operador lógico ||
-            var articulos = JSON.parse(localStorage.getItem("articulos")) || [];
+            var proveedores = JSON.parse(localStorage.getItem("proveedores")) || [];
 
             let tabla;
             // 2. INSTANCIAS DE COMPONENTES BOOTSTRAP
             // Inicializamos los modales de Bootstrap en variables para poder abrirlos (show) y cerrarlos (hide) desde JavaScript
-            const modalNArticulo = new bootstrap.Modal(document.getElementById('modalNuevoArticulo'));
+            const modalNProveedor = new bootstrap.Modal(document.getElementById('modalNuevoProveedor'));
 
             document.addEventListener('DOMContentLoaded', function () {
                 // Llamada a la función que inyecta el menú (ubicada en js/funcionesSistema.js)
                 // Esto evita tener que copiar y pegar todo el HTML del menú en cada página.
                 cargarComponentes();
-                cargarTablaArticulo();
+                cargarTablaProveedores();
 
-                //Evento para Nuevo Usuario----------------------------------------------------------
+                //Evento para Nuevo Proveedor----------------------------------------------------------
                 // 3. CAPTURAR EL ENVÍO DEL FORMULARIO (SUBMIT)
-                document.getElementById('formNuevoArticulo').addEventListener('submit', function (e) {
+                document.getElementById('formNuevoProveedor').addEventListener('submit', function (e) {
                         // Usamos preventDefault() para evitar que la página se recargue (comportamiento por defecto de los formularios)
                         e.preventDefault();
 
-                        const nuevoArticulo = {
-                            idarticulo: obtenerSiguienteId(articulos),
-                            codigobarra: document.getElementById('codigobarra').value.trim(),
-                            descripcion: document.getElementById('descripcion').value.trim().toUpperCase(),
-                            marca: document.getElementById('marca').value.trim(),
-                            clasificacion: document.getElementById('clasificacion').value.trim(),
-                            tiva: document.getElementById('tiva').value.trim(),
-                            stock: document.getElementById('stock').value.trim(),
-                            preventa: document.getElementById('preventa').value.trim()
+                        const nuevoProveedor = {
+                            idproveedor: obtenerSiguienteId(proveedores),
+                            ruc: document.getElementById('ruc').value.trim(),
+                            nombre: document.getElementById('nombre').value.trim().toUpperCase(),
+                            razonsocial: document.getElementById('razon_social').value.trim(),
+                            direccion: document.getElementById('direccion').value.trim(),
+                            telefono: document.getElementById('telefono').value.trim(),
+                            ciudad: document.getElementById('ciudad').value.trim()
                         };
-                        });
 
-                        if (Object.values(nuevoArticulo).some(val => val === '')) {
-                            alertify.error('Todos los campos son obligatorios');
+                        if (Object.values(nuevoProveedor).some(val => val === '')) {
+                            alert('Todos los campos son obligatorios');
                             return;
                         }
 
-                        const articulosExistente = articulos.find(a => a.idarticulo === nuevoArticulo.idarticulo);
-                        if (articulosExistente) {
-                            alertify.error('El ID de articulo ya existe');
-                            return;
-                        }
-
-                        articulos.push(nuevoArticulo);
-                        guardarArticulos(articulos);
+                        proveedores.push(nuevoProveedor);
+                        guardarProveedores(proveedores);
                         this.reset();
-                        tabla.row.add(nuevoArticulo).draw();
-                        modalNArticulo.hide();
+                        tabla.row.add(nuevoProveedor).draw();
+                        modalNProveedor.hide();
                         alertify.success("Registro guardado");
                 });
 
                 
-                const modalEArticulo = new bootstrap.Modal(document.getElementById('modalEditarArticulo'));
+                const modalEProveedor = new bootstrap.Modal(document.getElementById('modalEditarProveedor'));
                 // Evento para botón editar--------------------------------------------------------------
                 // 4. DELEGACIÓN DE EVENTOS (EVENT DELEGATION)
                 // Como los botones de "Editar" y "Eliminar" son creados dinámicamente por el DataTable, no podemos asignarles 
@@ -296,108 +277,105 @@
                 document.addEventListener('click', function (e) {
                         if (e.target.closest('.btn-editar')) {
                             const id = parseInt(e.target.closest('.btn-editar').dataset.id);
-                            const articulo = articulos.find(a => a.idarticulo === id);
-                            if (articulo) {
-                                document.getElementById('edit_idarticulo').value = articulo.idarticulo;
-                                document.getElementById('edit_codigobarra').value = articulo.codigobarra;
-                                document.getElementById('edit_descripcion').value = articulo.descripcion;
-                                document.getElementById('edit_marca').value = articulo.marca;
-                                document.getElementById('edit_clasificacion').value = articulo.clasificacion;
-                                document.getElementById('edit_tiva').value = articulo.tiva;
-                                document.getElementById('edit_stock').value = articulo.stock;
-                                document.getElementById('edit_preventa').value= articulo.preventa;
-                                modalEArticulo.show();
+                            const proveedor = proveedores.find(p => p.idproveedor === id);
+                            if (proveedor) {
+                                document.getElementById('edit_idproveedor').value = proveedor.idproveedor;
+                                document.getElementById('edit_ruc').value = proveedor.ruc;
+                                document.getElementById('edit_nombre').value = proveedor.nombre;
+                                document.getElementById('edit_razon_social').value = proveedor.razonsocial;
+                                document.getElementById('edit_direccion').value = proveedor.direccion;
+                                document.getElementById('edit_telefono').value = proveedor.telefono;
+                                document.getElementById('edit_ciudad').value = proveedor.ciudad;
+                                modalEProveedor.show();
                             }
                         }
                 });
 
                 // Guardar cambios al editar-----------------------------------------------------------
-                document.getElementById('formEditarArticulo').addEventListener('submit', function (e) {
+                document.getElementById('formEditarProveedor').addEventListener('submit', function (e) {
                         e.preventDefault();
-                        const id = parseInt(document.getElementById('edit_idarticulo').value);
-                        const index = articulos.findIndex(a => a.idarticulo === id);
-                        if (index !== -1) { //Si el articulo existe dentro de la lista
-                            articulos[index] = {
-                                idarticulo: id,
-                                codigobarra: document.getElementById('edit_codigobarra').value.trim(),
-                                descripcion: document.getElementById('edit_descripcion').value.trim().toUpperCase(),
-                                marca: document.getElementById('edit_marca').value.trim(),
-                                clasificacion: document.getElementById('edit_clasificacion').value.trim(),
-                                tiva: document.getElementById('edit_tiva').value.trim(),
-                                stock: document.getElementById('edit_stock').value.trim(),
-                                preventa: document.getElementById('edit_preventa').value.trim()
+                        const id = parseInt(document.getElementById('edit_idproveedor').value);
+                        const index = proveedores.findIndex(p => p.idproveedor === id);
+                        if (index !== -1) { //Si el proveedor existe dentro de la lista
+                            proveedores[index] = {
+                                idproveedor: id,
+                                ruc: document.getElementById('edit_ruc').value.trim(),
+                                nombre: document.getElementById('edit_nombre').value.trim().toUpperCase(),
+                                razonsocial: document.getElementById('edit_razon_social').value.trim(),
+                                direccion: document.getElementById('edit_direccion').value.trim(),
+                                telefono: document.getElementById('edit_telefono').value.trim(),
+                                ciudad: document.getElementById('edit_ciudad').value.trim()
                             };
-                            guardarArticulos(articulos);
-                            tabla.clear().rows.add(articulos).draw();
-                            modalEArticulo.hide();
-                            alertify.success("Artículo actualizado");
+                            guardarProveedores(proveedores);
+                            tabla.clear().rows.add(proveedores).draw();
+                            modalEProveedor.hide();
+                            alertify.success("Proveedor actualizado");
                             //.clear(): Borra todo el contenido actual de la tabla
                             //.rows.add(usuarios): Toma el nuevo array usuarios y lo carga en la tabla
                             //.draw(): Renderiza los cambios. Sin esto, la tabla se quedaría en blanco o no mostraría los cambios
                         }
                 });
 
-                const modalDelArticulo = new bootstrap.Modal(document.getElementById('modalEliminarArticulo'));
+                const modalDelProveedor = new bootstrap.Modal(document.getElementById('modalEliminarProveedor'));
 
                 // Evento para botón eliminar (Abre el modal)
                 document.addEventListener('click', function (e) {
                         if (e.target.closest('.btn-eliminar')) {
                             const id = parseInt(e.target.closest('.btn-eliminar').dataset.id);
-                            const articulo = articulos.find(a => a.idarticulo === id);
-                            if (articulo) {
-                                document.getElementById('del_idarticulo').value = articulo.idarticulo;
-                                document.getElementById('del_codigobarra').textContent = articulo.codigobarra;
-                                document.getElementById('del_descripcion').textContent = articulo.descripcion;
-                                document.getElementById('del_marca').textContent = articulo.marca;
-                                document.getElementById('del_clasificacion').textContent = articulo.clasificacion;
-                                document.getElementById('del_tiva').textContent = articulo.tiva;
-                                document.getElementById('del_stock').textContent = articulo.stock;
-                                document.getElementById('del_preventa').textContent = articulo.preventa;
-                                modalDelArticulo.show();
+                            const proveedor = proveedores.find(p => p.idproveedor === id);
+                            if (proveedor) {
+                                document.getElementById('del_idproveedor').value = proveedor.idproveedor;
+                                document.getElementById('del_ruc').textContent = proveedor.ruc;
+                                document.getElementById('del_nombre').textContent = proveedor.nombre;
+                                document.getElementById('del_razon_social').textContent = proveedor.razonsocial;
+                                document.getElementById('del_direccion').textContent = proveedor.direccion;
+                                document.getElementById('del_telefono').textContent = proveedor.telefono;
+                                document.getElementById('del_ciudad').textContent = proveedor.ciudad;
+                                modalDelProveedor.show();
                             }
                         }
                 });
 
                 // Evento para el botón eliminar dentro del modal (Ejecuta Alertify)
                 document.getElementById('btnConfirmarEliminar').addEventListener('click', function() {
-                        const id = parseInt(document.getElementById('del_idarticulo').value);
-                        alertify.confirm("Eliminar artículo", "¿Realmente deseas eliminar de forma permanente a este artículo?",
+                        const id = parseInt(document.getElementById('del_idproveedor').value);
+                        alertify.confirm("Eliminar proveedor", "¿Realmente deseas eliminar de forma permanente a este proveedor?",
                             function(){
-                                articulo = articulos.filter(a => a.idarticulo !== id);
-                                guardarArticulos(articulo);
-                                tabla.clear().rows.add(articulo).draw();
-                                modalDelArticulo.hide();
-                                alertify.success("Artículo eliminado correctamente");
+                                proveedores = proveedores.filter(p => p.idproveedor !== id);
+                                guardarProveedores(proveedores);
+                                tabla.clear().rows.add(proveedores).draw();
+                                modalDelProveedor.hide();
+                                alertify.success("Proveedor eliminado correctamente");
                             },
                             function(){
-                                modalDelArticulo.hide();
+                                modalDelProveedor.hide();
                                 alertify.error("Eliminación cancelada");
                             }
                         ).set('labels', {ok:'Sí, eliminar', cancel:'No, mantener'});
                 });
-            //----------------------------------    --------------------------------------------
-            function cargarTablaArticulo(){
+            });
+            //------------------------------------------------------------------------------
+            function cargarTablaProveedores(){
                 // Inicializar el DataTable
-                tabla = new DataTable("#tabla_Articulos", {
-                        data: articulos,
+                tabla = new DataTable("#tabla_proveedores", {
+                        data: proveedores,
                         columns: [
-                            { data: 'idarticulo', title: 'Id Articulo' },
-                            { data: 'codbarra', title: 'Codigo de barra' },
-                            { data: 'descripcion', title: 'descripción' },
-                            { data: 'idmarca', title: 'Marca' },
-                            { data: 'idclasificacion', title: 'Clasificacion' },
-                            {data: 'tiva', title: 'T. Iva' },
-                            { data: 'stockactual', title: 'Stock' },
-                            { data: 'preventa', title: 'Preventa' },
+                            { data: 'idproveedor', title: 'Id Proveedor' },
+                            { data: 'ruc', title: 'RUC' },
+                            { data: 'nombre', title: 'Nombre' },
+                            { data: 'razonsocial', title: 'Razón Social' },
+                            { data: 'direccion', title: 'Dirección' },
+                            { data: 'telefono', title: 'Teléfono' },
+                            { data: 'ciudad', title: 'Ciudad' },
                             {
                                 data: null,
                                 render: function (data, type, row) {
                                 return `
                                     <button class="btn btn-sm btn-warning me-1 btn-editar" 
-                                    data-id="${row.idarticulo}"><i class="bi bi-pencil-square"></i>
+                                    data-id="${row.idproveedor}"><i class="bi bi-pencil-square"></i>
                                     </button>
                                     <button class="btn btn-sm btn-danger btn-eliminar" 
-                                    data-id="${row.idarticulo}"><i class="bi bi-trash">
+                                    data-id="${row.idproveedor}"><i class="bi bi-trash">
                                     </i></button>
                                 `;
                                 }
@@ -407,23 +385,17 @@
                         buttons: [
                             {
                                 extend: 'print',
-                                text: '<i class="bi bi-printer"></i> Imprimir',
-                                exportOptions: {
-                                    columns: [0, 1, 2, 3, 4, 5, 6, 7] // Excluye columna de acciones (índice 6)
-                                }
+                                text: '<i class="bi bi-printer"></i> Imprimir'
                             },
                             {
                                 extend: 'excelHtml5',
-                                text: '<i class="bi bi-filetype-xlsx"></i> Exportar a Excel',
-                                exportOptions: {
-                                    columns: [0, 1, 2, 3, 4, 5, 6, 7] // Excluye columna de acciones (índice 6)
-                                }
+                                text: '<i class="bi bi-filetype-xlsx"></i> Exportar a Excel'
                             },
                             {
                                 extend: 'pdfHtml5',
                                 text: '<i class="bi bi-filetype-pdf"></i> Exportar a PDF',
                                 exportOptions: {
-                                    columns: [0, 1, 2, 3, 4, 5, 6, 7] // Excluye columna de acciones (índice 6)
+                                    columns: [0, 1, 2, 3, 4, 5, 6] // Excluye columna de acciones (índice 6)
                                 },
                                 customize: function (doc) {
                                     // 1. Obtener fecha y hora en formato dd/MM/aaaa HH:mm:ss
@@ -461,7 +433,7 @@
                                                 if (tableNode.table.body && tableNode.table.body.length > 0) {
                                                     // 'auto' se ajusta al tamaño del contenido (como la cabecera)
                                                     // '*' toma todo el espacio sobrante (ideal para el Nombre)
-                                                    tableNode.table.widths = ['auto', 'auto', '*', 'auto', 'auto', 'auto','auto','auto'];
+                                                    tableNode.table.widths = ['auto', 'auto', '*', 'auto', 'auto', 'auto'];
                                                 }
 
                                                 break; // salimos del loop luego de encontrar la tabla
@@ -470,54 +442,54 @@
                                 }
                             },
                             {
-                                text: '<i class="bi bi-file-earmark-plus"></i> Nuevo articulo',
+                                text: '<i class="bi bi-file-earmark-plus"></i> Nuevo proveedor',
                                 className: 'btn btn-sm btn-primary',
                                 action: function (e, dt, node, config) {
-                                    // Abrir un modal para crear un nuevo artículo
-                                    $('#modalNuevoArticulo').modal('show');
+                                    // Abrir un modal para crear un nuevo proveedor
+                                    $('#modalNuevoProveedor').modal('show');
                                 }
                             }
                         ],
                         responsive: true,
                         language: {
-                            url: 'dt/es-ES.js'
+                            url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
                         },
                         initComplete: function () {
                             // Aplicar clases de Bootstrap a los botones
-                            const buttons = document.querySelectorAll('.dt-button');
-                            buttons.forEach(btn => {
-                                btn.classList.remove('dt-button');
-                                if (btn.textContent.includes('articulo')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-primary');
-                                } else if (btn.textContent.includes('Imprimir')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-info');
-                                } else if (btn.textContent.includes('Excel')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-success');
-                                } else if (btn.textContent.includes('PDF')) {
-                                    btn.classList.add('btn', 'btn-sm', 'btn-danger');
-                                }
-                            });
+                            $('.dt-button:contains("Nuevo proveedor")')
+                                .removeClass('dt-button') // elimina estilo por defecto
+                                .addClass('btn btn-sm btn-primary'); // agrega estilos Bootstrap
+
+                            $('.dt-button:contains("Imprimir")')
+                                .removeClass('dt-button')
+                                .addClass('btn btn-sm btn-info');
+
+                            $('.dt-button:contains("Exportar a Excel")')
+                                .removeClass('dt-button')
+                                .addClass('btn btn-sm btn-success');
+
+                            $('.dt-button:contains("Exportar a PDF")')
+                                .removeClass('dt-button')
+                                .addClass('btn btn-sm btn-danger');
                         }
                 });
-                
+                //tabla.column(5).visible(false); //Ocultar la columna contraseña
             }
             //------------------------------------------------------------------------------
-            function guardarArticulos(data) {
-                localStorage.setItem('articulos', JSON.stringify(data));
+            function guardarProveedores(data) {
+                localStorage.setItem('proveedores', JSON.stringify(data));
             }
             //------------------------------------------------------------------------------
-            function obtenerSiguienteId(articulos) {
-                if (articulos.length === 0){
+            function obtenerSiguienteId(proveedores) {
+                if (proveedores.length === 0){
                         return 1;
                 }else{
-                        const maxId = Math.max(...articulos.map(a => a.idarticulo || 0));
+                        const maxId = Math.max(...proveedores.map(p => p.idproveedor || 0));
                         return maxId + 1;
                 }
             }
             //------------------------------------------------------------------------------
-            
-        </script>
-        
 
+        </script>
 </body>
 </html>

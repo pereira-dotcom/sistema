@@ -189,6 +189,60 @@ function datos(){
             subtotal: 700000
         },
     ];
+    var clientes = [
+        {
+            idcliente: 1,
+            cedula: "1234567",
+            nombre: "JUAN PEREZ",
+            celular: "0971-123456",
+            direccion: "AV. SIN NOMBRE C/PUNTAS DEL NORTE",
+            ciudad: "CONCEPCIÓN"
+        },
+        {
+            idcliente: 2,   
+            cedula: "223344",
+            nombre: "MARIA GOMEZ",
+            celular: "0971-001100",
+            direccion: "ALEJO GARCÍA Y EUSEBIO AYALA",
+            ciudad: "CIUDAD DEL ESTE"
+        },
+    ];
+    localStorage.setItem("Clientes", JSON.stringify(clientes));
+    // CREAR UN ARRAY de objetos: ventas---------------------------------------------
+    // Tabla: Ventas
+
+    var ventas =[
+        {
+            idventa: 1,
+            fecha: "2025-06-01",
+            hora: "14:30",
+            idcliente: 1,
+            idvendedor: 2,
+            metodopago: "EFECTIVO",
+            estadopago: "PAGADO",
+            descuento: 0,
+            impuesto: 10,
+            total: 100000,
+            totalfinal: 110000,
+            estadoventa: "COMPLETADA"
+
+        }
+    ]
+    var ventasdetalle = [
+        {
+            idventadet: 1,
+            idventa: 1,
+            idarticulo: 2,
+            cantidad: 1,
+            preuni: 100000, 
+            subtotal: 100000
+        }
+    ]
+    // Guardar en localStorage como cadena JSON
+    localStorage.setItem("ventas", JSON.stringify(ventas));
+    localStorage.setItem("ventasdetalle", JSON.stringify(ventasdetalle));
+
+            
 
     // Guardar en localStorage como cadena JSON
     localStorage.setItem("comprascabecera", JSON.stringify(comprascabecera));
