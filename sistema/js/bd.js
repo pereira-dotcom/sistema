@@ -4,37 +4,37 @@ function datos(){
         {
             idusuario: 1,
             cedula: "1234567",
-            nombre: "AURORA ESCALANTE",
+            nombre: "ANGEL PEREIRA",
             celular: "0971-123456",
-            usuario: "aurora",
-            contrasena: "aurora123",
+            usuario: "angel",
+            contrasena: "angel123",
             rol: "ADMINISTRADOR"
         },
         {
             idusuario: 2,
             cedula: "223344",
-            nombre: "ANA BANDERAS",
+            nombre: "JOSR DAVALOS",
             celular: "0971-001100",
-            usuario: "ana",
-            contrasena: "ana123",
+            usuario: "jose",
+            contrasena: "jose123",
             rol: "Vendedor"
         },
         {
             idusuario: 3,
             cedula: "556677",
-            nombre: "CASIMIRO NOVENADA",
+            nombre: "SAMUEL PERALTA",
             celular: "0972-220022",
-            usuario: "casimiro",
-            contrasena: "casimiro123",
+            usuario: "samuel",
+            contrasena: "samuel123",
             rol: "Cajero"
         },
         {
             idusuario: 4,
             cedula: "6590456",
-            nombre: "Alondra",
-            rol: "Programador",
-            usuario: "Alondra",
-            contrasena: "alon1234",
+            nombre: "PEDRO QUINTANA",
+            rol: "Cajero",
+            usuario: "pedro",
+            contrasena: "pedro123",
             celular: "0985455620"
         },
         {
@@ -486,7 +486,73 @@ function datos(){
             celular: "0971-001100",
             direccion: "ALEJO GARCÍA Y EUSEBIO AYALA",
             ciudad: "CIUDAD DEL ESTE"
-        }
+        },
+        {
+    idcliente: 3,
+    cedula: "334455",
+    nombre: "JUAN PEREZ",
+    celular: "0982-223344",
+    direccion: "AVDA. SAN JOSE 123",
+    ciudad: "ENCARNACIÓN"
+},
+{
+    idcliente: 4,
+    cedula: "445566",
+    nombre: "ANA LOPEZ",
+    celular: "0975-556677",
+    direccion: "CALLE PALMA Y OLMOS",
+    ciudad: "ASUNCIÓN"
+},
+{
+    idcliente: 5,
+    cedula: "556677",
+    nombre: "CARLOS RAMIREZ",
+    celular: "0981-778899",
+    direccion: "KM 5 MONSEÑOR RODRÍGUEZ",
+    ciudad: "CIUDAD DEL ESTE"
+},
+{
+    idcliente: 6,
+    cedula: "667788",
+    nombre: "SOFIA MARTÍNEZ",
+    celular: "0973-112233",
+    direccion: "AVDA. DEFENSORES DEL CHACO 456",
+    ciudad: "SAN LORENZO"
+},
+{
+    idcliente: 7,
+    cedula: "778899",
+    nombre: "PEDRO GONZÁLEZ",
+    celular: "0984-334455",
+    direccion: "CALLE ITURBE Y ESTIGARRIBIA",
+    ciudad: "VILLARRICA"
+},
+{
+    idcliente: 8,
+    cedula: "889900",
+    nombre: "LUCIA FERNÁNDEZ",
+    celular: "0976-445566",
+    direccion: "AVDA. ARTIGAS 890",
+    ciudad: "ASUNCIÓN"
+},
+{
+    idcliente: 9,
+    cedula: "990011",
+    nombre: "MIGUEL TORRES",
+    celular: "0987-556677",
+    direccion: "KM 8 AVDA. MONSEÑOR RODRÍGUEZ",
+    ciudad: "CIUDAD DEL ESTE"
+},
+{
+    idcliente: 10,
+    cedula: "101112",
+    nombre: "CAMILA DUARTE",
+    celular: "0978-667788",
+    direccion: "AVDA. PARAGUAY Y COLÓN",
+    ciudad: "ENCARNACIÓN"
+}
+
+
     ];
     // CREAR UN ARRAY de objetos: ventas---------------------------------------------
     // Tabla: Ventas
