@@ -70,13 +70,13 @@
         <script src="alert/alertify.min.js"></script>
 
         <script>
-            // var nom = localStorage.getItem("nomUsuario");
-            // if (nom == "" || nom == null){
-            //     window.location.href = "error.html"; // Redirige al login
-            // }
+            var nom = localStorage.getItem("nomUsuario");
+            if (nom == "" || nom == null){
+                window.location.href = "error.html"; // Redirige al login
+            }
             
-            // Carga los componentes de la interfaz (Navbar y Sidebar) dinámicamente
-            // Esto evita repetir el largo código HTML del menú en todas las pantallas
+            //Carga los componentes de la interfaz (Navbar y Sidebar) dinámicamente
+           // Esto evita repetir el largo código HTML del menú en todas las pantallas
             cargarComponentes();
         </script>
     </body>

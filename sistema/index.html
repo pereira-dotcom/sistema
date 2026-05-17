@@ -308,7 +308,15 @@
                 localStorage.setItem("nomUsuario", usuarioEncontrado.nombre);
                 window.location.href = "menu.html";
             }
+            // ver si el usuario que ingreso es administrador, vendedor o cajero
+            // if(usuarioEncontrado.rol === "ADMINISTRADOR"){
+            //     // mostrar el menu de administrador
+            //     window.location.href = "menu.html";
+
+            // }
+            
         });
+
         //-------------------------------------------------------------------------------------
         function cargarBD(){
             //Carga los datos en el localStorage
